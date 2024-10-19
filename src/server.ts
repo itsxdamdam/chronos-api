@@ -10,6 +10,7 @@ app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+
 app.get("/", (req, res) => {
   console.log("hello from express")
   res.status(200)
