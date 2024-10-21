@@ -1,4 +1,13 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
+export const comparePasswords = (password, hash) => {
+  return bcrypt.compare(password, hash)
+}
+
+export const hashPassword = (password) => {
+  return bcrypt.hash(password, 5)
+}
 
 // JWT basically converts an object to a string
 export const createJWT = (user) => {
@@ -21,7 +30,6 @@ export const protect = (req, res, next) => {
   }
 
   const [, token] = bearer.split(" ");
-  console.log(token);
 
   if (!token) {
     res.status(401);
@@ -36,7 +44,7 @@ export const protect = (req, res, next) => {
   } catch (e) {
     console.error(e);
     res.status(401);
-    res.json({ message: "not valid token fr" });
+    res.json({ message: "not valid token" });
     return;
   }
 };
