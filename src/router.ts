@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { body, oneOf, validationResult } from "express-validator";
+import { body, oneOf, check } from "express-validator";
 import { handleInputErrors } from "./modules/middleware";
 
 const router = Router();
@@ -36,17 +36,21 @@ router.get("/update", () => {});
 router.get("/update/:id", () => {});
 router.put(
   "/update/:id",
-  body("title").optional,
-  body("body").optional,
-  body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]),
-  body("version").optional,
+  body("title").optional(),
+  body("body").optional(),
+  oneOf([
+    check("status").equals("IN_PROGRESS"),
+    check("status").equals("SHIPPED"),
+    check("status").equals("DEPRECATED"),
+  ]),
+  body("version").optional(),
   () => {}
 );
 router.post(
   "/update",
   body("title").exists().isString(),
   body("body").exists().isString(),
-  body("productId").optional,
+  body("productId").exists().isString(),
   () => {}
 );
 router.delete("/update/:id", () => {});
