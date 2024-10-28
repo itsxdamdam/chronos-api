@@ -1,7 +1,13 @@
 import { Router } from "express";
 import { body, oneOf, check } from "express-validator";
 import { handleInputErrors } from "./modules/middleware";
-import { createProduct, getProducts, getOneProduct, updateProduct, deleteProduct } from "./handlers/product";
+import {
+  createProduct,
+  getProducts,
+  getOneProduct,
+  updateProduct,
+  deleteProduct,
+} from "./handlers/product";
 
 const router = Router();
 
