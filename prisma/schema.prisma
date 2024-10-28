@@ -18,16 +18,17 @@ model User {
   createdAt DateTime  @default(now())
   username  String    @unique
   password  String
-  product   Product[]
+  products   Product[]
 }
 
 model Product {
   id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
-  name    String   @db.VarChar(255)
+  name        String   @db.VarChar(255)
   belongsToId String
   belongsTo   User     @relation(fields: [belongsToId], references: [id])
   updates     Update[]
+  @@unique([id, belongsToId])
 }
 
 // enum is a bag of constants
