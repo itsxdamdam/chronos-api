@@ -6,16 +6,22 @@ import { comparePasswords, createJWT, hashPassword } from "../modules/auth"
 // most dbs are servers too so you're not only talking to disc, you are talking to a network that is talking to a disc
 // if you have service db you're talking to network that's talking to a network, that's talking to a disc.
 
-export const createNewUser = async (req, res) => {
-  const user = await prisma.user.create({
-    data: {
-      username: req.body.username,
-      password: await hashPassword(req.body.password)
-    }
-  })
-
-  const token = createJWT(user)
-  res.json({ token })
+export const createNewUser = async (req, res, next) => {
+  try {
+    const user = await prisma.user.create({
+      data: {
+        username: req.body.username,
+        password: await hashPassword(req.body.password)
+      }
+    })
+  
+    const token = createJWT(user)
+    res.json({ token })
+  } catch (e) {
+    e.type = "input"
+    next(e)
+  }
+  
 }
 
 export const signin = async (req, res) => {
