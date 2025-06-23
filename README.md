@@ -24,25 +24,28 @@
 ---
 
 ## 📁 Project Structure
+<pre>
+chronos-api/  
+  ├── prisma/  
+     │ └── migrations/  
+     │ └── schema.prisma 
+  ├── src/ 
+     │ ├── tests/ 
+     │ ├── config/ 
+     │ ├── handlers/ 
+     │ ├── modules/ 
+     │ ├── db.ts 
+     │ └── index.ts 
+     │ └── router.ts 
+     │ └── server.ts 
+  ├── README.md 
+  ├── jest.config.js 
+  ├── package-lock.json 
+  ├── package.json 
+  └── tsconfig.json 
+</pre>
 
-chronos-api/ 
-  ├── prisma/ 
-    │ └── migrations/ <br/>
-    │ └── schema.prisma <br/>
-  ├── src/ <br/>
-    │ ├── tests/ <br/>
-    │ ├── config/ <br/>
-    │ ├── handlers/ <br/>
-    │ ├── modules/ <br/>
-    │ ├── db.ts <br/>
-    │ └── index.ts <br/>
-    │ └── router.ts <br/>
-    │ └── server.ts <br/>
-  ├── README.md <br/>
-  ├── jest.config.js <br/>
-  ├── package-lock.json <br/>
-  ├── package.json <br/>
-  └── tsconfig.json <br/>
+
 
 ---
 
@@ -66,11 +69,8 @@ Jest is used for unit and integration testing to ensure all endpoints behave as 
 
 📖 API Endpoints Overview
 Method	Endpoint	Description	Access
-GET	/updates	Get all product updates	Public
-GET	/updates/:id	Get a specific product update	Public
-POST	/updates	Create a new product update	Manager only
-PUT	/updates/:id	Update a product update	Manager only
-DELETE	/updates/:id	Delete a product update	Manager only
-
-Authentication and authorization middleware required for protected routes.
-
+GET	/update	Get all product updates	Public
+GET	/update/:id	Get a specific product update	Public
+POST	/update	Create a new product update	Manager only
+PUT	/update/:id	Update a product update	Manager only
+DELETE	/update/:id	Delete a product update	Manager only
